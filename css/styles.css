@@ -310,12 +310,87 @@ h3 {
   width: 60px;
   height: 34px;
   margin-right: 10px; /* Space between switch and label */
+  text-decoration: none; /* Remove underline from link */
+  padding: 5px;
+  transition: transform 0.2s; /* Smooth transformation */
+  will-change: transform; /* Optimize for animations */
 }
 
-.switch input { 
+/* Hover effect */
+.switch:hover {
+  transform: scale(1.05); /* Slightly increase size */
+}
+
+.switch:hover::after,
+.switch:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.switch::after {
+  content: attr(title); /* Display the title text */
+  position: absolute;
+  top: 50%;
+  transform: translate(-70%, -50%);
+  left: calc(-100% - 20px); /* Position to the left of the switch */
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 0.8em;
+  font-family: Arial, sans-serif;
+  z-index: 1001;
+  white-space: nowrap;
   opacity: 0;
-  width: 0;
-  height: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.switch::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%; /* Align with the right edge of the switch */
+  margin-right: -5px; /* Adjust this value to move the tail */
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.switch:hover::after {
+  content: attr(title); /* This will display the title text */
+  position: absolute;
+  top: 50%; /* Position at the middle of the switch */
+  transform: translate(-70%, -50%); /* Ensure it's vertically centered */
+  left: calc(-100% - 10px); /* Position to the left of the switch */
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 0.8em; /* Smaller font size */
+  font-family: Arial, sans-serif; /* Example font style */
+  z-index: 1001; /* Above other elements */
+  white-space: nowrap; /* Prevents the text from wrapping */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.switch:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Active/click effect */
+.switch:active {
+  transform: scale(0.95); /* Slightly decrease size */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
 }
 
 .slider {
@@ -325,36 +400,16 @@ h3 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: #ccc; /* Background color */
+  background-image: url('../icons/en.png'); /* French flag icon */
+  background-repeat: no-repeat;
+  background-position: left 5px center; /* Position the flag to the left */
+  background-size: 26px 26px; /* Size of the flag icon */
   border-radius: 34px; /* Rounded corners */
-  z-index: 1; /* Ensure the switch is above the label */
   border: 1px solid #000; 
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  top: 3px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
+  z-index: 1; /* Ensure the slider is above the label */
   -webkit-transition: .4s;
   transition: .4s;
-  border-radius: 50%; /* Rounded corners */
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
 }
 
 .language-label {
@@ -368,9 +423,9 @@ input:checked + .slider:before {
 }
 
 /* Change label text when switch is active */
-#language-toggle:checked + .slider + .language-label {
+/* #language-toggle:checked + .slider + .language-label {
   content: 'EN';
-}
+} */
 
 /* Profile   
 ---------------------------------- */
