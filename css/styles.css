@@ -484,7 +484,7 @@ h3 {
   right: 0;
   bottom: 0;
   background-color: #ccc; /* Background color */
-  background-image: url('../icons/en.png'); /* French flag icon */
+  background-image: url('../icons/world.png'); /* World/eng flag icon */
   background-repeat: no-repeat;
   background-position: left 5px center; /* Position the flag to the left */
   background-size: 26px 26px; /* Size of the flag icon */
